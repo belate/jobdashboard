@@ -1,0 +1,12 @@
+{% for job in jobs %}
+    <h3>{{ job.name }} <span class="label label-info">{{ job.owner.username }}</span> <span class="label {{ job.status_class }}">{{ job.get_status_display }}</span>
+         <a class="btn btn-mini" type="button" href="{% url 'add-note' job.id %}">Add note</a>
+         <a class="btn btn-mini" type="button" href="{% url 'edit-job' job.id %}">Edit</a>
+     </h3>
+    <ul class="unstyled inside">
+        {% for note in job.notes.all %}
+            <li><span class="label label-info">{{ note.owner.username }}</span> <b>{{ note.timestamp|timesince }} ago</b>: {{ note.text }}</li>
+        {% endfor %}
+    </ul>
+    <hr/>
+{% endfor %}

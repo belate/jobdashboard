@@ -1,0 +1,27 @@
+{% extends "jobs/base.html" %}
+
+{% block content %}
+<h1>Jobs</h1>
+
+<div id="content">
+{% include "jobs/jobs.html" %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+
+    $(document).ready(function() {
+
+        setInterval(function(){
+
+            $.get('/', function(data) {
+              $('#content').html(data);
+            });
+
+        }, 10000);
+
+    });
+
+</script>
+{% endblock %}

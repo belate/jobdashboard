@@ -1,0 +1,29 @@
+{% extends "jobs/base.html" %}
+
+{% block content %}
+<h1>Job</h1>
+
+<form method='post' action=''>
+    {{ form.as_p }}
+    {% csrf_token %}
+    <p><input class="btn btn-primary" type='submit' name='save' value='Save' />
+</form>
+
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        var end_date = $('#id_end_date').datepicker().on('changeDate', function(ev){
+            end_date.hide();
+        }).data('datepicker');
+
+        var start_date = $('#id_start_date').datepicker().on('changeDate', function(ev){
+            start_date.hide();
+        }).data('datepicker');
+
+    });
+
+</script>
+{% endblock %}

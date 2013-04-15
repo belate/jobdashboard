@@ -1,0 +1,78 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Aeguana tasks</title>
+    <meta name="description" content="">
+    <meta name="author" content="Belate Atorrasagasti">
+
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "css/datepicker.css" %}" rel="stylesheet">
+
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+
+      .inside{
+        padding-left:20px;
+      }
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/">Tasks</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li><a href="{% url 'add-job' %}">Add Job</a></li>
+              <li><a href="/admin">Admin</a></li>
+            </ul>
+            <ul class="nav pull-right">
+              {% if user.is_authenticated %}
+              <li><a>Welcome, <strong>{{ user.username }}!</strong></a></li>
+              <li><a href="{% url 'logout' %}">Logout</a></li>
+              {% else %}
+              <li><a href="{% url 'login' %}">Login</a></li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="row">
+        <div class="span12">
+            {% block content %}{% endblock %}
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>Project by <a href="http://github.com/belate">Belate Atorrasagasti</a></p>
+      </footer>
+
+    </div>
+
+    <script src="{% static "js/jquery.js" %}"></script>
+    <script src="{% static "js/bootstrap-datepicker.js" %}"></script>
+
+    {% block extra_js %}{% endblock %}
+
+  </body>
+</html>
